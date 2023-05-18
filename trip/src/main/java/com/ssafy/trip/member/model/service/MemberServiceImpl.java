@@ -19,19 +19,19 @@ public class MemberServiceImpl implements MemberService {
 	private MemberRepo memberRepo;
 	
 	@Override
-	public Member select(String id) throws SQLException {
-		return memberRepo.select(id);
+	public Member read(String id) throws SQLException {
+		return memberRepo.read(id);
 	}
 	@Override
-	public List<Member> selectAll() throws SQLException {
-		return memberRepo.selectAll();
+	public List<Member> readAll() throws SQLException {
+		return memberRepo.readAll();
 	}
 	@Override
-	public boolean insert(Member member) throws Exception {
+	public boolean create(Member member) throws Exception {
 		if(member.getId() == null || member.getPassword() == null || member.getEmail() == null || member.getName() == null) {
 			throw new Exception();
 		}
-		return memberRepo.insert(member)==1;
+		return memberRepo.create(member)==1;
 	}
 	@Override
 	public boolean update(Member member) throws Exception {

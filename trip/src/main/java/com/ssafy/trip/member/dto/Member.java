@@ -10,10 +10,12 @@ import lombok.*;
 @ToString
 @ApiModel(value="회원 정보", description = "회원의 상세 정보를 나타냅니다.")
 public class Member {
+	
 	private String id;
 	private String password;
-	private String name;
 	private String email;
+	private String name;
 	private int age;
+//	private String token;
 }
 

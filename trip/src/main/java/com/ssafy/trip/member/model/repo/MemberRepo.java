@@ -10,9 +10,9 @@ import com.ssafy.trip.member.dto.Member;
 @Mapper
 public interface MemberRepo {
 	String loginCheck(Member dto);
-	Member select(String id) throws SQLException;
-	List<Member> selectAll() throws SQLException;
-	int insert(Member user) throws SQLException;
+	Member read(String id) throws SQLException;
+	List<Member> readAll() throws SQLException;
+	int create(Member user) throws SQLException;
 	int update(Member user) throws SQLException;
 	int delete(String id) throws SQLException;
 }
