@@ -1,31 +1,20 @@
 package com.ssafy.trip.map.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.trip.board.dto.Board;
+import com.ssafy.trip.board.controller.BoardController;
 import com.ssafy.trip.map.dto.Gugun;
 import com.ssafy.trip.map.dto.Sido;
 import com.ssafy.trip.map.dto.TripInfo;
@@ -35,14 +24,16 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Controller
+@RestController
 @CrossOrigin("*")
 @RequestMapping("/mapapi")
 public class MapController {
-
+	
 	@Autowired
 	private MapService mapService;
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	
 //	@GetMapping("/sidofm")
 //	protected String sidofm(Model model) throws ServletException, IOException, SQLException {
 //		List<Sido> sido = mapService.selectSido();
@@ -50,67 +41,68 @@ public class MapController {
 //		return "map/triparea";
 //	}
 	
+//	@GetMapping("/sido")
+//	protected void sido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+//	      response.setContentType("application/json; charset=UTF-8");
+//	      List<Sido> sido = mapService.selectSido();
+//	      StringBuilder sb = new StringBuilder();
+//	      sb.append("[");
+//	      for(int i = 1; i <= sido.size(); i++) {
+//	         sb.append("{\"rnum\":"+i+",\"code\":\""+sido.get(i-1).getSido_code()+"\",\"name\":\""+sido.get(i-1).getSido_name()+"\"}");
+//	         if(i != sido.size()) sb.append(",");
+//	         else sb.append("]");
+//	      }
+//	      response.setContentType("text/json");
+//	      PrintWriter out = response.getWriter();
+//	      out.println(sb);
+//	      
+//	}
+	
+//	@GetMapping("/gugun")
+//	protected void gugun(@RequestParam String sido_code, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+//	      response.setContentType("application/json; charset=UTF-8");
+////	      String sido_code = request.getParameter("sido_code");
+//	      List<Gugun> gugun = mapService.selectGugun(sido_code);
+//	      StringBuilder sb = new StringBuilder();
+//	      sb.append("[");
+//	      for(int i = 1; i <= gugun.size(); i++) {
+//	         sb.append("{\"rnum\":"+i+",\"code\":\""+gugun.get(i-1).getGugunCode()+"\",\"name\":\""+gugun.get(i-1).getGugun_name()+"\"}");
+//	         if(i != gugun.size()) sb.append(",");
+//	         else sb.append("]");
+//	      }
+//	      response.setContentType("text/json");
+//	      PrintWriter out = response.getWriter();
+//	      out.println(sb);
+//	}
+	
 	@GetMapping("/sido")
-	protected void sido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-	      response.setContentType("application/json; charset=UTF-8");
-	      List<Sido> sido = mapService.selectSido();
-	      StringBuilder sb = new StringBuilder();
-	      sb.append("[");
-	      for(int i = 1; i <= sido.size(); i++) {
-	         sb.append("{\"rnum\":"+i+",\"code\":\""+sido.get(i-1).getSido_code()+"\",\"name\":\""+sido.get(i-1).getSido_name()+"\"}");
-	         if(i != sido.size()) sb.append(",");
-	         else sb.append("]");
-	      }
-	      response.setContentType("text/json");
-	      PrintWriter out = response.getWriter();
-	      out.println(sb);
-	      
+	@ApiOperation(value="시도 정보를 리턴합니다..", response=Sido.class)
+	public ResponseEntity<?> sido() throws Exception{
+		List<Sido> sido = mapService.selectSido();
+		if(sido != null) {
+			return new ResponseEntity<List<Sido>>(sido, HttpStatus.OK); // 200
+			
+		}
+		else {
+			// 204 : 성공적으로 수행했으나 데이터가 없다
+			log.debug("fail");
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT); // 204
+		}
 	}
 	
 	@GetMapping("/gugun")
-	protected void gugun(@RequestParam String sido_code, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-	      response.setContentType("application/json; charset=UTF-8");
-//	      String sido_code = request.getParameter("sido_code");
-	      List<Gugun> gugun = mapService.selectGugun(sido_code);
-	      StringBuilder sb = new StringBuilder();
-	      sb.append("[");
-	      for(int i = 1; i <= gugun.size(); i++) {
-	         sb.append("{\"rnum\":"+i+",\"code\":\""+gugun.get(i-1).getGugun_code()+"\",\"name\":\""+gugun.get(i-1).getGugun_name()+"\"}");
-	         if(i != gugun.size()) sb.append(",");
-	         else sb.append("]");
-	      }
-	      response.setContentType("text/json");
-	      PrintWriter out = response.getWriter();
-	      out.println(sb);
+	@ApiOperation(value="원하는 시도의 군구 정보를 리턴합니다..", response=Gugun.class)
+	public ResponseEntity<?> gugun(@RequestParam("sido") String sidoCode) throws Exception{
+		logger.debug(sidoCode);
+		List<Gugun> gugun = mapService.selectGugun(sidoCode);
+		if(gugun != null) {
+			return new ResponseEntity<List<Gugun>>(gugun, HttpStatus.OK); // 200
+		}
+		else {
+			// 204 : 성공적으로 수행했으나 데이터가 없다
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT); // 204
+		}
 	}
-	
-//	@GetMapping("/sido")
-//	@ApiOperation(value="시도 정보를 리턴합니다..", response=Sido.class)
-//	public ResponseEntity<?> sido() throws Exception{
-//		List<Sido> sido = mapService.selectSido();
-//		if(sido != null) {
-//			return new ResponseEntity<List<Sido>>(sido, HttpStatus.OK); // 200
-//			
-//		}
-//		else {
-//			// 204 : 성공적으로 수행했으나 데이터가 없다
-//			log.debug("fail");
-//			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT); // 204
-//		}
-//	}
-//	
-//	@GetMapping("/gugun")
-//	@ApiOperation(value="원하는 시도의 군구 정보를 리턴합니다..", response=Gugun.class)
-//	public ResponseEntity<?> gugun(@RequestParam("sido_code") String sido_code) throws Exception{
-//		List<Gugun> gugun = mapService.selectGugun(sido_code);
-//		if(gugun != null) {
-//			return new ResponseEntity<List<Gugun>>(gugun, HttpStatus.OK); // 200
-//		}
-//		else {
-//			// 204 : 성공적으로 수행했으나 데이터가 없다
-//			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT); // 204
-//		}
-//	}
 //	
 //	// trip은 현재 미구현 상태. Database에서 여행지 정보를 리턴받음.
 //	@GetMapping("/trip")

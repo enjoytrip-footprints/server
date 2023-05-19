@@ -22,8 +22,8 @@ public class MapServiceImpl implements MapService {
 		return mapRepo.selectSido();
 	}
 	@Override
-	public List<Gugun> selectGugun(String sido_code) throws SQLException {
-		return mapRepo.selectGugun(sido_code);
+	public List<Gugun> selectGugun(String sidoCode) throws SQLException {
+		return mapRepo.selectGugun(sidoCode);
 	}
 	
 	@Override
@@ -32,8 +32,8 @@ public class MapServiceImpl implements MapService {
 	}
 	
 	@Override
-	public List<TripInfo> selectTripInfo(String sido_code, String gugun_code, int content_type_id) throws SQLException {
-		return mapRepo.selectTripInfo(sido_code, gugun_code, content_type_id);
+	public List<TripInfo> selectTripInfo(String sidoCode, String gugunCode, int content_type_id) throws SQLException {
+		return mapRepo.selectTripInfo(sidoCode, gugunCode, content_type_id);
 	}
 
 }
