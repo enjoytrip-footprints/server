@@ -15,7 +15,7 @@
     </resultMap>
  -->
  
- 	<select id="login" parameterType="member" resultType="member">
+ 	<select id="login" resultType="member">
 		select id, password
 		from user
 		where id = #{id} and password = #{password}

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.ssafy.trip.member.dto.MemberLoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member login(Member memberDto) throws Exception {
+	public Member login(MemberLoginDto memberDto) throws Exception {
 		if (memberDto.getId() == null || memberDto.getPassword() == null)
 			return null;
 		return memberRepo.login(memberDto);
