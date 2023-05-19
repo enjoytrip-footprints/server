@@ -1,7 +1,9 @@
 package com.ssafy.trip.member.model.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ssafy.trip.member.dto.Member;
+import com.ssafy.trip.member.dto.MemberRegistDto;
 import com.ssafy.trip.member.model.repo.MemberRepo;
 
 
@@ -27,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberRepo.readAll();
 	}
 	@Override
-	public boolean create(Member member) throws Exception {
+	public boolean create(MemberRegistDto member) throws Exception {
 		if(member.getId() == null || member.getPassword() == null || member.getEmail() == null || member.getName() == null) {
 			throw new Exception();
 		}
@@ -41,20 +44,37 @@ public class MemberServiceImpl implements MemberService {
 	public boolean delete(String id) throws Exception {
 		return memberRepo.delete(id)==1;
 	}
-	
+
 	@Override
-	public String loginCheck(Member member, HttpSession session) {
-	String name = memberRepo.loginCheck(member);
-	 if (name != null) { // 세션 변수 저장
-	  session.setAttribute("userid", member.getId());
-	  session.setAttribute("name", name);
-	}
-	 return name; 
+	public Member login(Member memberDto) throws Exception {
+		if (memberDto.getId() == null || memberDto.getPassword() == null)
+			return null;
+		return memberRepo.login(memberDto);
 	}
 
 	@Override
-	public void logout(HttpSession session) {
-	 session.invalidate(); // 세션 초기화
-	 }
+	public Member userInfo(String userid) throws Exception {
+		return memberRepo.userInfo(userid);
+	}
 
+	@Override
+	public void saveRefreshToken(String userid, String refreshToken) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("token", refreshToken);
+		memberRepo.saveRefreshToken(map);
+	}
+
+	@Override
+	public Object getRefreshToken(String userid) throws Exception {
+		return memberRepo.getRefreshToken(userid);
+	}
+
+	@Override
+	public void deleRefreshToken(String userid) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("token", null);
+		memberRepo.deleteRefreshToken(map);
+	}
 }
