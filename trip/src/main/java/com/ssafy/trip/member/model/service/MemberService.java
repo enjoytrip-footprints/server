@@ -3,6 +3,7 @@ package com.ssafy.trip.member.model.service;
 import javax.servlet.http.HttpSession;
 
 import com.ssafy.trip.member.dto.Member;
+import com.ssafy.trip.member.dto.MemberLoginDto;
 import com.ssafy.trip.member.dto.MemberRegistDto;
 
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public interface MemberService {
 	boolean delete(String id) throws Exception;
 	
 
-	 Member login(Member memberDto) throws Exception;
+	 Member login(MemberLoginDto memberDto) throws Exception;
 	 Member userInfo(String userid) throws Exception;
 	 void saveRefreshToken(String userid, String refreshToken) throws Exception;
 	 Object getRefreshToken(String userid) throws Exception;
