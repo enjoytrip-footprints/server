@@ -16,7 +16,7 @@
  -->
  
  	<select id="login" resultType="member">
-		select id, password
+		select id, password, email, name,  age
 		from user
 		where id = #{id} and password = #{password}
 	</select>
