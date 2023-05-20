@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import com.ssafy.trip.member.dto.MemberLoginDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ssafy.trip.member.dto.Member;
@@ -18,7 +19,7 @@ public interface MemberRepo {
 	int update(Member user) throws SQLException;
 	int delete(String id) throws SQLException;
 	
-	 Member login(Member memberDto) throws SQLException;
+	 Member login(MemberLoginDto memberDto) throws SQLException;
 	 Member userInfo(String userid) throws SQLException;
 	 void saveRefreshToken(Map<String, String> map) throws SQLException;
 	 Object getRefreshToken(String userid) throws SQLException;
