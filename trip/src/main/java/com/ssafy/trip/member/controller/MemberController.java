@@ -96,8 +96,8 @@ public class MemberController extends HttpServlet {
 	public ResponseEntity<Member> getArticle(@PathVariable("memberId") @ApiParam(value = "얻어올 회원 id.", required = true) String memberId) throws Exception {
 		return new ResponseEntity<Member>(memberService.read(memberId), HttpStatus.OK);
 	}
-	
 
+	@CrossOrigin(origins = "*")
 	@ApiOperation(value = "로그인", notes = "Access-token과 로그인 결과 메세지를 반환한다.", response = Map.class)
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> login(

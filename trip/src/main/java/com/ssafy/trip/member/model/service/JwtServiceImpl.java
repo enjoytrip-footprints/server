@@ -22,25 +22,21 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class JwtServiceImpl implements JwtService {
 
-	public static final Logger logger = LoggerFactory.getLogger(JwtServiceImpl2.class);
+	public static final Logger logger = LoggerFactory.getLogger(JwtServiceImpl.class);
 
-//	SALT는 토큰 유효성 확인 시 사용하기 때문에 외부에 노출되지 않게 주의해야 한다.
 	private static final String SALT = "ssafySecret";
-	
-	private static final int ACCESS_TOKEN_EXPIRE_MINUTES = 1; // 분단위
+	private static final int ACCESS_TOKEN_EXPIRE_MINUTES = 10; // 분단위
 	private static final int REFRESH_TOKEN_EXPIRE_MINUTES = 2; // 주단위
+
 
 	@Override
 	public <T> String createAccessToken(String key, T data) {
-		return create(key, data, "access-token", 1000 * 60 * ACCESS_TOKEN_EXPIRE_MINUTES);
-//		return create(key, data, "access-token", 1000 * 10 * ACCESS_TOKEN_EXPIRE_MINUTES);
+		return create(key, data, "access-token", 1000 * 10 * ACCESS_TOKEN_EXPIRE_MINUTES);
 	}
 
-//	AccessToken에 비해 유효기간을 길게...
 	@Override
 	public <T> String createRefreshToken(String key, T data) {
-		return create(key, data, "refresh-token", 1000 * 60 * 60 * 24 * 7 * REFRESH_TOKEN_EXPIRE_MINUTES);
-//		return create(key, data, "refresh-token", 1000 * 30 * ACCESS_TOKEN_EXPIRE_MINUTES);
+		return create(key, data, "refresh-token", 1000 * 30 * ACCESS_TOKEN_EXPIRE_MINUTES);
 	}
 
 	//Token 발급
@@ -49,31 +45,22 @@ public class JwtServiceImpl implements JwtService {
 	 * data : Claim에 셋팅 될 data 값
 	 * subject : payload에 sub의 value로 들어갈 subject값
 	 * expire : 토큰 유효기간 설정을 위한 값
-	 * jwt 토큰의 구성 : header + payload + signature
+	 * jwt 토큰의 구성 : header+payload+signature
 	 */
+
 	@Override
 	public <T> String create(String key, T data, String subject, long expire) {
-		// Payload 설정 : 생성일 (IssuedAt), 유효기간 (Expiration), 
-		// 토큰 제목 (Subject), 데이터 (Claim) 등 정보 세팅.
-		Claims claims = Jwts.claims()
-				// 토큰 제목 설정 ex) access-token, refresh-token
-				.setSubject(subject)
-				// 생성일 설정
-				.setIssuedAt(new Date()) 
-				// 만료일 설정 (유효기간)
-				.setExpiration(new Date(System.currentTimeMillis() + expire)); 
-		
-		// 저장할 data의 key, value
-		claims.put(key, data); 
-		
 		String jwt = Jwts.builder()
 				// Header 설정 : 토큰의 타입, 해쉬 알고리즘 정보 세팅.
 				.setHeaderParam("typ", "JWT")
-				.setClaims(claims)
+				.setHeaderParam("regDate", System.currentTimeMillis()) // 생성 시간
+				// Payload 설정 : 유효기간(Expiration), 토큰 제목 (Subject), 데이터 (Claim) 등 정보 세팅.
+				.setExpiration(new Date(System.currentTimeMillis() + expire)) // 토큰 유효기간
+				.setSubject(subject) // 토큰 제목 설정 ex) access-token, refresh-token
+				.claim(key, data) // 저장할 데이터
 				// Signature 설정 : secret key를 활용한 암호화.
 				.signWith(SignatureAlgorithm.HS256, this.generateKey())
 				.compact(); // 직렬화 처리.
-		
 		return jwt;
 	}
 
@@ -92,29 +79,6 @@ public class JwtServiceImpl implements JwtService {
 		}
 
 		return key;
-	}
-
-//	전달 받은 토큰이 제대로 생성된것인지 확인 하고 문제가 있다면 UnauthorizedException을 발생.
-	@Override
-	public boolean checkToken(String jwt) {
-		try {
-//			Json Web Signature? 서버에서 인증을 근거로 인증정보를 서버의 private key로 서명 한것을 토큰화 한것
-//			setSigningKey : JWS 서명 검증을 위한  secret key 세팅
-//			parseClaimsJws : 파싱하여 원본 jws 만들기
-			Jws<Claims> claims = Jwts.parser().setSigningKey(this.generateKey()).parseClaimsJws(jwt);
-//			Claims 는 Map의 구현체 형태
-			logger.debug("claims: {}", claims);
-			return true;
-		} catch (Exception e) {
-//			if (logger.isInfoEnabled()) {
-//				e.printStackTrace();
-//			} else {
-			logger.error(e.getMessage());
-//			}
-//			throw new UnauthorizedException();
-//			개발환경
-			return false;
-		}
 	}
 
 	@Override
@@ -145,6 +109,28 @@ public class JwtServiceImpl implements JwtService {
 	@Override
 	public String getUserId() {
 		return (String) this.get("user").get("userid");
+	}
+
+	@Override
+	public boolean checkToken(String jwt) {
+		try {
+//			Json Web Signature? 서버에서 인증을 근거로 인증정보를 서버의 private key로 서명 한것을 토큰화 한것
+//			setSigningKey : JWS 서명 검증을 위한  secret key 세팅
+//			parseClaimsJws : 파싱하여 원본 jws 만들기
+			Jws<Claims> claims = Jwts.parser().setSigningKey(this.generateKey()).parseClaimsJws(jwt);
+//			Claims 는 Map의 구현체 형태
+			logger.debug("claims: {}", claims);
+			return true;
+		} catch (Exception e) {
+//			if (logger.isInfoEnabled()) {
+//				e.printStackTrace();
+//			} else {
+			logger.error(e.getMessage());
+//			}
+//			throw new UnauthorizedException();
+//			개발환경
+			return false;
+		}
 	}
 
 }
