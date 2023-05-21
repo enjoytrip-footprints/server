@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ssafy.trip.member.dto.MemberLoginDto;
+import com.ssafy.trip.member.dto.MemberUpdateDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +84,7 @@ public class MemberController extends HttpServlet {
 	
 	@ApiOperation(value = "회원 수정", notes = "수정할 회원 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PutMapping
-	public ResponseEntity<String> modifyArticle(@RequestBody @ApiParam(value = "수정할 회원 정보.", required = true) Member member) throws Exception {
+	public ResponseEntity<String> update(@RequestBody @ApiParam(value = "수정할 회원 정보.", required = true) MemberUpdateDto member) throws Exception {
 		
 		if (memberService.update(member)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);

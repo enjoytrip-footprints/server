@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.trip.member.dto.MemberLoginDto;
+import com.ssafy.trip.member.dto.MemberUpdateDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ssafy.trip.member.dto.Member;
@@ -16,7 +17,7 @@ public interface MemberRepo {
 	Member read(String id) throws SQLException;
 	List<Member> readAll() throws SQLException;
 	int create(MemberRegistDto user) throws SQLException;
-	int update(Member user) throws SQLException;
+	int update(MemberUpdateDto user) throws SQLException;
 	int delete(String id) throws SQLException;
 	
 	 Member login(MemberLoginDto memberDto) throws SQLException;
