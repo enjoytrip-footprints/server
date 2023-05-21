@@ -17,8 +17,8 @@
 	
  
     <insert id="writeArticle">
-    	insert into board (author, title, article)
-    	values (#{author}, #{title}, #{article})
+    	insert into board (author, title, article, img)
+    	values (#{author}, #{title}, #{article}, #{img})
     </insert>
     
     <select id="listArticle" resultType="board">
@@ -53,8 +53,9 @@
 		update board set 
 		title=#{title}, 
 		author=#{author}, 
-		article=#{article} 
-		where articleNo = #{articleNo}
+		article=#{article},
+        img=#{img}
+        where articleNo = #{articleNo}
     </update>
     
     <delete id="deleteArticle">
