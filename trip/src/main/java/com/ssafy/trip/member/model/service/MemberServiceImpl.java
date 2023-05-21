@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.ssafy.trip.member.dto.MemberLoginDto;
+import com.ssafy.trip.member.dto.MemberUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,7 +39,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberRepo.create(member)==1;
 	}
 	@Override
-	public boolean update(Member member) throws Exception {
+	public boolean update(MemberUpdateDto member) throws Exception {
 		return memberRepo.update(member)==1;
 	}
 	@Override
