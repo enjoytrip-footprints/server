@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.trip.review.model.repo.ReviewRepo">
+
+    <select id="getReview" resultType="review">
+        select *
+        from review
+        where reviewId = #{reviewId}
+    </select>
+
+    <select id="listReview" resultType="review">
+        select *
+        from review
+    </select>
+
+    <insert id="writeReview" parameterType="review">
+        insert into review
+            (userId, title, image, `desc`)
+        values (#{userId}, #{title}, #{image},
+                #{desc})
+    </insert>
+
+    <update id="modifyReview" parameterType="map">
+        update review
+        set title = #{title}, `desc` = #{desc}, image = #{image}
+        where reviewId = #{reviewId}
+    </update>
+
+    <delete id="deleteReview">
+        delete from review
+        where reviewId = #{reviewId}
+    </delete>
+
+    <select id="searchByCondition" resultType="review">
+        SELECT *
+        FROM review WHERE title LIKE
+        CONCAT('%',#{word},'%')
+    </select>
+
+    <update id="updateHit">
+		update review set
+		hit = ${hit} + 1
+		where reviewId = #{reviewId}
+    </update>
+
+</mapper>
