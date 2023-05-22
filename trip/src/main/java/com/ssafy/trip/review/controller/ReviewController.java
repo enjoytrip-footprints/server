@@ -32,7 +32,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 
-	@ApiOperation(value = "후기 조회", notes = "새로운 게시글 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "후기 조회", response = String.class)
 	@GetMapping("/{reviewId}")
 	public ResponseEntity<?> getReview(@PathVariable("reviewId") int reviewId) {
 		try {
@@ -47,7 +47,7 @@ public class ReviewController {
 		}
 	}
 
-	@ApiOperation(value = "후기 리스트", notes = "새로운 게시글 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "후기 리스트",  response = String.class)
 	@GetMapping("/getReviewList")
 	public ResponseEntity<?> getReviewList() {
 		try {
