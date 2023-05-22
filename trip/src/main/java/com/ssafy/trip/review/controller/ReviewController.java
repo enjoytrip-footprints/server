@@ -62,21 +62,6 @@ public class ReviewController {
 		}
 	}
 
-//	@GetMapping("/getRecentList")
-//	public ResponseEntity<?> getRecentList() {
-//		try {
-//			List<Review> reviews = reviewService.listRecentReview();
-//			if (reviews != null && !reviews.isEmpty()) {
-//				return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
-//			} else {
-//				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-//			}
-//		} catch (Exception e) {
-//			return exceptionHandling(e);
-//		}
-//	}
-
-
 	@PostMapping("/write")
 	public ResponseEntity<?> writeReview(@Value("${file.path.upload-files}") String filePath, Review review,
 										   @RequestParam("upfile") MultipartFile file) {
@@ -136,7 +121,6 @@ public class ReviewController {
 //		} else {
 //			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 //		}
-//
 //	}
 
 }

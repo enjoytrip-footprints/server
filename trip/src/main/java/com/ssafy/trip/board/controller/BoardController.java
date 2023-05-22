@@ -47,43 +47,15 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-//	@ApiOperation(value = "게시판 글작성", notes = "새로운 게시글 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-//	@PostMapping
-//	public ResponseEntity<String> doRegist(@RequestBody @ApiParam(value = "게시글 정보.", required = true) Board board) throws Exception{
-//		if (boardService.writeArticle(board)) {
-//			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-//		}
-//		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-//	}
 	@ApiOperation(value = "게시판 글작성", notes = "새로운 게시글 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PostMapping
-	public ResponseEntity<?> create(@Value("${file.path.upload-files}") String filePath, Board board,
-										   @RequestParam("img") MultipartFile file) {
-		try {
-
-			if (!file.isEmpty()) {
-				String review = "review";
-				String saveFolder = filePath + review;
-				logger.debug("저장 폴더 : {}", saveFolder);
-				File folder = new File(saveFolder);
-				if (!folder.exists())
-					folder.mkdirs();
-				String originalFileName = file.getOriginalFilename();
-				if (!originalFileName.isEmpty()) {
-					String saveFileName = UUID.randomUUID().toString()
-							+ originalFileName.substring(originalFileName.lastIndexOf('.'));
-					logger.debug("원본 파일 이름 : {}, 실제 저장 파일 이름 : {}", file.getOriginalFilename(), saveFileName);
-					file.transferTo(new File(folder, saveFileName));
-					board.setImg(review + "/" + saveFileName);
-				}
-			}
-			boardService.writeArticle(board);
-			return new ResponseEntity<Void>(HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	public ResponseEntity<String> doRegist(@RequestBody @ApiParam(value = "게시글 정보.", required = true) Board board) throws Exception{
+		if (boardService.writeArticle(board)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
-	
+
 	@ApiOperation(value = "게시판 글삭제", notes = "글번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@DeleteMapping("/{articleNo}")
 	public ResponseEntity<String> deleteArticle(@PathVariable("articleNo") @ApiParam(value = "살제할 글의 글번호.", required = true) int articleNo) throws Exception {
