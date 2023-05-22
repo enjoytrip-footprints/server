@@ -12,4 +12,5 @@ public interface MapService {
 	List<Gugun> selectGugun(String sidoCode) throws SQLException;
 	List<Gugun> selectGugun() throws SQLException;
 	List<TripInfo> selectTripInfo(String sidoCode, String gugunCode, int content_type_id) throws SQLException;
+	List<TripInfo> searchSpot(String keyword) throws SQLException;
 }
