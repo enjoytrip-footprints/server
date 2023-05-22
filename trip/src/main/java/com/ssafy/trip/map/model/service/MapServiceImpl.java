@@ -35,5 +35,9 @@ public class MapServiceImpl implements MapService {
 	public List<TripInfo> selectTripInfo(String sidoCode, String gugunCode, int content_type_id) throws SQLException {
 		return mapRepo.selectTripInfo(sidoCode, gugunCode, content_type_id);
 	}
+	@Override
+	public List<TripInfo> searchSpot(String keyword) throws SQLException {
+		return mapRepo.searchSpot(keyword);
+	}
 
 }

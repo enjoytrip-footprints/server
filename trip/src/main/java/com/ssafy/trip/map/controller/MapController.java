@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -101,6 +102,17 @@ public class MapController {
 		else {
 			// 204 : 성공적으로 수행했으나 데이터가 없다
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT); // 204
+		}
+	}
+	
+	@GetMapping("/search/{keyword}")
+	@ApiOperation(value="키워드를 입력해 여러 장소를 리턴합니다..", response=TripInfo.class)
+	public ResponseEntity<?> searchSpot(@PathVariable() String keyword) throws Exception {
+		List<TripInfo> spots = mapService.searchSpot(keyword);
+		if (spots != null && !spots.isEmpty()) {
+			return new ResponseEntity<List<TripInfo>>(spots, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		}
 	}
 //	
