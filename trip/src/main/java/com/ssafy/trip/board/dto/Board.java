@@ -15,7 +15,5 @@ public class Board {
 	private String title;
 	private String article;
 	private int cnt;
-	private int likes;
-	private String img;
 }
 
