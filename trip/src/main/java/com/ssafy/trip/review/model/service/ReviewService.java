@@ -8,6 +8,7 @@ import java.util.Map;
 public interface ReviewService {
 	void writeReview(Review review) throws Exception;
 	List<Review> listReview() throws Exception;
+	List<Review> listMyReview(String userId) throws Exception;
 	Review getReview(int reviewId) throws Exception;
 	void modifyReview(Map<String, String> map) throws Exception;
 	void deleteReview(int reviewId) throws Exception;

@@ -62,20 +62,20 @@ public class ReviewController {
 		}
 	}
 
-//	@GetMapping("/getRecentList")
-//	public ResponseEntity<?> getRecentList() {
-//		try {
-//			List<Review> reviews = reviewService.listRecentReview();
-//			if (reviews != null && !reviews.isEmpty()) {
-//				return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
-//			} else {
-//				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-//			}
-//		} catch (Exception e) {
-//			return exceptionHandling(e);
-//		}
-//	}
-
+	@ApiOperation(value = "특정인 후기 리스트",  response = String.class)
+	@GetMapping("/getReviewList/{userId}")
+	public ResponseEntity<?> getMyReviewList(@PathVariable("userId") String userId) {
+		try {
+			List<Review> reviews = reviewService.listMyReview(userId);
+			if (reviews != null && !reviews.isEmpty()) {
+				return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
 
 	@PostMapping("/write")
 	public ResponseEntity<?> writeReview(@Value("${file.path.upload-files}") String filePath, Review review,
@@ -136,7 +136,6 @@ public class ReviewController {
 //		} else {
 //			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 //		}
-//
 //	}
 
 }

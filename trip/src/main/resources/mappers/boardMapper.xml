@@ -17,19 +17,13 @@
 	
  
     <insert id="writeArticle">
-    	insert into board (author, title, article, img)
-    	values (#{author}, #{title}, #{article}, #{img})
+    	insert into board (author, title, article)
+    	values (#{author}, #{title}, #{article})
     </insert>
     
     <select id="listArticle" resultType="board">
         select * from board
     </select>
-    
-    <!-- <select id="getTotalArticleCount">
-        select count(article_no)
-        from board
-        <if test="#{key} "></if>
-    </select> -->
     
     <select id="searchByCondition" resultType="board">
         SELECT *
@@ -51,10 +45,8 @@
     
     <update id="modifyArticle">
 		update board set 
-		title=#{title}, 
-		author=#{author}, 
-		article=#{article},
-        img=#{img}
+		title=#{title},
+		article=#{article}
         where articleNo = #{articleNo}
     </update>
     

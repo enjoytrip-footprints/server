@@ -13,6 +13,12 @@
         from review
     </select>
 
+    <select id="listMyReview" resultType="review">
+        select *
+        from review
+        where userId = #{userId}
+    </select>
+
     <insert id="writeReview" parameterType="review">
         insert into review
             (userId, title, image, `desc`)
