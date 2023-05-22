@@ -48,6 +48,12 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> listReview() throws Exception {
 		return reviewRepo.listReview();
 	}
+
+	@Override
+	@Transactional
+	public List<Review> listMyReview(String userId) throws Exception {
+		return reviewRepo.listMyReview(userId);
+	}
 	
 //	@Override
 //	public List<Review> searchByCondition(SearchCondition con) {
