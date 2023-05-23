@@ -24,6 +24,14 @@ public class WebMvcConfiguration implements WebMvcConfigurer{
 	public WebMvcConfiguration(@Value("${file.path.upload-files}") String uploadFilePath) {
 		this.uploadFilePath=uploadFilePath;
 	}
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resource/**")
+				.addResourceLocations("file:///" + uploadFilePath +"/")
+				.setCachePeriod(3600)
+				.resourceChain(true)
+				.addResolver(new PathResourceResolver());
+	}
 
 
 	@Autowired
@@ -54,13 +62,4 @@ public class WebMvcConfiguration implements WebMvcConfigurer{
 				.maxAge(1800);
 	}
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//		registry.addResourceHandler("/upload/file/**")
-		registry.addResourceHandler("/resource/**")
-				.addResourceLocations("file:///" + uploadFilePath +"/")
-				.setCachePeriod(3600)
-				.resourceChain(true)
-				.addResolver(new PathResourceResolver());
-	}
 }

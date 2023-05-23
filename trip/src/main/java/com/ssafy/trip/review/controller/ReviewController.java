@@ -62,6 +62,21 @@ public class ReviewController {
 		}
 	}
 
+	@ApiOperation(value = "인기 후기 리스트",  response = String.class)
+	@GetMapping("/getHotReviewList")
+	public ResponseEntity<?> getHotReviewList() {
+		try {
+			List<Review> reviews = reviewService.listHotReview();
+			if (reviews != null && !reviews.isEmpty()) {
+				return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
+
 	@ApiOperation(value = "특정인 후기 리스트",  response = String.class)
 	@GetMapping("/getReviewList/{userId}")
 	public ResponseEntity<?> getMyReviewList(@PathVariable("userId") String userId) {
@@ -81,10 +96,9 @@ public class ReviewController {
 	public ResponseEntity<?> writeReview(@Value("${file.path.upload-files}") String filePath, Review review,
 										   @RequestParam("upfile") MultipartFile file) {
 		try {
-
 			if (!file.isEmpty()) {
-				String hot = "review";
-				String saveFolder = filePath + hot;
+				String rev = "review";
+				String saveFolder = filePath + rev;
 				logger.debug("저장 폴더 : {}", saveFolder);
 				File folder = new File(saveFolder);
 				if (!folder.exists())
@@ -95,10 +109,9 @@ public class ReviewController {
 							+ originalFileName.substring(originalFileName.lastIndexOf('.'));
 					logger.debug("원본 파일 이름 : {}, 실제 저장 파일 이름 : {}", file.getOriginalFilename(), saveFileName);
 					file.transferTo(new File(folder, saveFileName));
-					review.setImage(hot + "/" + saveFileName);
+					review.setImage(rev + "/" + saveFileName);
 				}
 			}
-
 			reviewService.writeReview(review);
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
@@ -126,16 +139,14 @@ public class ReviewController {
 		}
 	}
 
-//	@GetMapping("/search")
-//	@ApiOperation(value = "SearchCondition 에 부합하는 조건을 가진 사용자 목록을 반환한다.", response = Review.class)
-//	public ResponseEntity<?> search(SearchCondition con) {
-//
-//		List<Review> reviews = reviewService.searchByCondition(con);
-//		if (reviews != null && reviews.size() > 0) {
-//			return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
-//		} else {
-//			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-//		}
-//	}
+	@PutMapping("/likes/{reviewId}")
+	public ResponseEntity<?> updateLikes(@PathVariable("reviewId") int reviewId) {
+		try {
+			reviewService.updateLikes(reviewId);
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
 
 }

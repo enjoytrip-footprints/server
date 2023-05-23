@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,12 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public int updateLikes(int reviewId) throws SQLException {
+		Review review = reviewRepo.getReview(reviewId);
+		return reviewRepo.updateLikes(review);
+	}
+
+	@Override
 	@Transactional
 	public void modifyReview(Map<String, String> map) throws Exception {
 		reviewRepo.modifyReview(map);
@@ -50,13 +57,14 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public List<Review> listHotReview() throws Exception {
+		return reviewRepo.listHotReview();
+	}
+
+	@Override
 	@Transactional
 	public List<Review> listMyReview(String userId) throws Exception {
 		return reviewRepo.listMyReview(userId);
 	}
-	
-//	@Override
-//	public List<Review> searchByCondition(SearchCondition con) {
-//		return reviewRepo.searchByCondition(con);
-//	}
+
 }
