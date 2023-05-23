@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.trip.plan.model.repo.PlanRepo">
+
+	
+    <insert id="writePlan">
+        insert into plan
+            (memberId, planTitle, planDetail)
+        values (#{memberId}, #{planTitle}, #{planDetail})
+    </insert>
+
+    <insert id="writeDescription" parameterType="description">
+        insert into description
+            (planId, placeId, content, price, happy, departTime, arriveTime)
+        values (#{planId}, #{placeId}, #{content}, #{price}, #{happy}, #{departTime}, #{arriveTime})
+    </insert>
+    
+    <select id="listMyPlan" resultType="plan">
+        select *
+        from plan
+        where memberId = #{memberId}
+    </select>
+    
+    <select id="getPlan" resultType="plan">
+        select *
+        from plan
+        where id = #{planId}
+    </select>
+    
+    <select id="listMyDescription" resultType="description">
+        select *
+        from description
+        where planId = #{planId}
+    </select>
+</mapper>
