@@ -49,4 +49,10 @@
 		where reviewId = #{reviewId}
     </update>
 
+    <update id="updateLikes">
+        update review set
+            likes = #{likes} + 1
+        where reviewId = #{reviewId}
+    </update>
+
 </mapper>
