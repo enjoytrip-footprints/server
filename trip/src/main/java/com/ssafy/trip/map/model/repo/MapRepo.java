@@ -17,4 +17,5 @@ public interface MapRepo {
 	List<Gugun> selectGugun() throws SQLException;
 	List<TripInfo> selectTripInfo(String sidoCode, String gugunCode, int content_type_id) throws SQLException;
 	List<TripInfo> searchSpot(String keyword) throws SQLException;
+	TripInfo readSpot(String planId) throws SQLException;
 }
