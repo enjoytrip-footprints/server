@@ -21,6 +21,7 @@ public interface MemberService {
 
 	 Member login(MemberLoginDto memberDto) throws Exception;
 	 Member userInfo(String userid) throws Exception;
+	 int idCheck(String id) throws Exception;
 	 void saveRefreshToken(String userid, String refreshToken) throws Exception;
 	 Object getRefreshToken(String userid) throws Exception;
 	 void deleRefreshToken(String userid) throws Exception;

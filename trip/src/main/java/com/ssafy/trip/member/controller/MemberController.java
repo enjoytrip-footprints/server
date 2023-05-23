@@ -186,6 +186,14 @@ public class MemberController extends HttpServlet {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 
-
+	@GetMapping("/checkId/{id}")
+	public ResponseEntity<?> idCheck(@PathVariable String id) {
+		try {
+			int check = memberService.idCheck(id);
+			return new ResponseEntity<Integer>(check, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+		}
+	}
 
 }
