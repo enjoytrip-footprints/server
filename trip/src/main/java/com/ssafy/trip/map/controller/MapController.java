@@ -115,6 +115,17 @@ public class MapController {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		}
 	}
+	
+	@GetMapping("/readSpot/{planId}")
+	@ApiOperation(value="content_id를 입력해 장소를 리턴합니다..", response=TripInfo.class)
+	public ResponseEntity<?> readSpot(@PathVariable() String planId) throws Exception {
+		TripInfo spot = mapService.readSpot(planId);
+		if (spot != null) {
+			return new ResponseEntity<TripInfo>(spot, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+	}
 //	
 //	// trip은 현재 미구현 상태. Database에서 여행지 정보를 리턴받음.
 //	@GetMapping("/trip")

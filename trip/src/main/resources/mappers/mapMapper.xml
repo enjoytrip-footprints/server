@@ -39,7 +39,10 @@
 		select content_id, title, addr1, content_type_id, first_image, latitude, longitude
 		from place
 		where title like concat('%', #{keyword}, '%')
-		
     </select>
-    
+    <select id="readSpot" resultType="TripInfo">
+		select content_id, title, addr1, content_type_id, first_image, latitude, longitude
+		from place
+		where content_id=#{planId}
+    </select>
 </mapper>
