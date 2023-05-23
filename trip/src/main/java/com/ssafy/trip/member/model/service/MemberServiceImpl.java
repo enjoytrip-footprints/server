@@ -60,6 +60,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public int idCheck(String id) throws Exception {
+		return memberRepo.idCheck(id);
+	}
+
+	@Override
 	public void saveRefreshToken(String id, String refreshToken) throws Exception {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);

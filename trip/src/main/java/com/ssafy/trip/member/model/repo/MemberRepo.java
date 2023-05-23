@@ -22,6 +22,7 @@ public interface MemberRepo {
 	
 	 Member login(MemberLoginDto memberDto) throws SQLException;
 	 Member userInfo(String userid) throws SQLException;
+	 int idCheck(String id) throws SQLException;
 	 void saveRefreshToken(Map<String, String> map) throws SQLException;
 	 Object getRefreshToken(String userid) throws SQLException;
 	 void deleteRefreshToken(Map<String, String> map) throws SQLException;
