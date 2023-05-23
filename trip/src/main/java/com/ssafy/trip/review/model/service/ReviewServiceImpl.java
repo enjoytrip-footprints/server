@@ -57,6 +57,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public List<Review> listHotReview() throws Exception {
+		return reviewRepo.listHotReview();
+	}
+
+	@Override
 	@Transactional
 	public List<Review> listMyReview(String userId) throws Exception {
 		return reviewRepo.listMyReview(userId);

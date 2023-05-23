@@ -62,6 +62,21 @@ public class ReviewController {
 		}
 	}
 
+	@ApiOperation(value = "인기 후기 리스트",  response = String.class)
+	@GetMapping("/getHotReviewList")
+	public ResponseEntity<?> getHotReviewList() {
+		try {
+			List<Review> reviews = reviewService.listHotReview();
+			if (reviews != null && !reviews.isEmpty()) {
+				return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
+
 	@ApiOperation(value = "특정인 후기 리스트",  response = String.class)
 	@GetMapping("/getReviewList/{userId}")
 	public ResponseEntity<?> getMyReviewList(@PathVariable("userId") String userId) {

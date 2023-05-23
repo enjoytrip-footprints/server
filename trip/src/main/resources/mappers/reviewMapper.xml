@@ -11,6 +11,13 @@
     <select id="listReview" resultType="review">
         select *
         from review
+        order by reviewId desc
+    </select>
+
+    <select id="listHotReview" resultType="review">
+        select *
+        from review where likes >= 50
+        order by likes desc limit 15
     </select>
 
     <select id="listMyReview" resultType="review">
