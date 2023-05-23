@@ -67,12 +67,28 @@ public class PlanController {
 	
 	@ApiOperation(value = "세부 계획 작성",  response = String.class)
 	@PostMapping("/writeDes")
-	public ResponseEntity<?> writePlan(@RequestBody List<Description> description){
+	public ResponseEntity<?> writeDes(@RequestBody Description description){
 		try{
 			planService.writeDescription(description); 
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 		}
 		catch(Exception e){
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@ApiOperation(value = "해당 유저 마지막 작성 계획 조회", response = String.class)
+	@GetMapping("/getLast/{memberId}")
+	public ResponseEntity<?> getLast(@PathVariable("memberId") String memberId) {
+		try {
+			Plan plan = planService.getLastPlan(memberId);
+			logger.debug("플랜:"+plan);
+			if (plan != null) {
+				return new ResponseEntity<Plan>(plan, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			}
+		} catch (Exception e) {
 			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 		}
 	}

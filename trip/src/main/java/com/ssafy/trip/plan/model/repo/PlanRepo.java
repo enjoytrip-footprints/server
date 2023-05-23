@@ -14,6 +14,7 @@ import java.util.Map;
 public interface PlanRepo {
 	int writePlan(Plan plan) throws SQLException;
 	int writeDescription(Description description) throws SQLException;
+	Plan getLastPlan(String memberId) throws SQLException;
 //	List<Plan> listPlan() throws SQLException;
 	List<Plan> listMyPlan(String memberId) throws SQLException;
 	Plan getPlan(int planId) throws SQLException;
