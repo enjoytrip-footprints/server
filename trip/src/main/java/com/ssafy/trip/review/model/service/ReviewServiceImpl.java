@@ -20,7 +20,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public Review getReview(int reviewId) throws Exception {
 		Review review = reviewRepo.getReview(reviewId);
 		reviewRepo.updateHit(review);
-		return review;
+		return reviewRepo.getReview(reviewId);
 	}
 
 	@Override

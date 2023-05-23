@@ -53,7 +53,7 @@
     <update id="updateHit">
 		update review set
 		hit = ${hit} + 1
-		where reviewId = #{reviewId}
+		where reviewId = #{reviewId};
     </update>
 
     <update id="updateLikes">
