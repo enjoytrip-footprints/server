@@ -23,6 +23,7 @@
     
     <select id="listArticle" resultType="board">
         select * from board
+        order by articleNo desc
     </select>
     
     <select id="searchByCondition" resultType="board">

@@ -24,6 +24,7 @@
         select *
         from review
         where userId = #{userId}
+        order by reviewId desc
     </select>
 
     <insert id="writeReview" parameterType="review">
