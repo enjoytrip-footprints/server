@@ -31,6 +31,12 @@
 		set token = #{token, jdbcType=VARCHAR}
 		where id = #{id}
 	</update>
+
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(id)
+		from user
+		where id = #{id}
+	</select>
  
  	<select id="login_check" resultType="String">
 		  select name
