@@ -14,7 +14,8 @@ public interface ReviewRepo {
 	List<Review> listMyReview(String userId) throws SQLException;
 	Review getReview(int reviewId) throws SQLException;
 	int updateHit(Review review) throws SQLException;
+	int updateLikes(Review review) throws SQLException;
 	int modifyReview(Map<String, String> map) throws SQLException;
 	int deleteReview(int reviewId) throws SQLException;
-//	List<Review> searchByCondition(SearchCondition con);
+
 }

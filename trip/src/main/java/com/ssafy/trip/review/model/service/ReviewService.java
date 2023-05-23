@@ -2,6 +2,7 @@ package com.ssafy.trip.review.model.service;
 
 import com.ssafy.trip.review.dto.Review;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,5 +13,5 @@ public interface ReviewService {
 	Review getReview(int reviewId) throws Exception;
 	void modifyReview(Map<String, String> map) throws Exception;
 	void deleteReview(int reviewId) throws Exception;
-//	List<Review> searchByCondition(SearchCondition con);
+	int updateLikes(int reviewId) throws SQLException;
 }
