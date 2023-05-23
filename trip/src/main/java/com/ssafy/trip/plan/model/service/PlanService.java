@@ -9,7 +9,8 @@ import java.util.Map;
 
 public interface PlanService {
 	int writePlan(Plan plan) throws Exception;
-	void writeDescription(List<Description> description) throws SQLException;
+	int writeDescription(Description description) throws SQLException;
+	Plan getLastPlan(String memberId) throws SQLException;
 	List<Plan> listMyPlan(String memberId) throws SQLException;
 	Plan getPlan(int planId) throws SQLException;
 	List<Description> listMyDescription(int planId) throws SQLException;
