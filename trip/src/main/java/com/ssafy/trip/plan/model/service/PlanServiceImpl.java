@@ -1,8 +1,9 @@
 package com.ssafy.trip.plan.model.service;
 
-import com.ssafy.trip.plan.controller.PlanController;
+
 import com.ssafy.trip.plan.dto.Description;
 import com.ssafy.trip.plan.dto.Plan;
+import com.ssafy.trip.plan.dto.PlanInfo;
 import com.ssafy.trip.plan.model.repo.PlanRepo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -70,34 +71,20 @@ public class PlanServiceImpl implements PlanService {
 		return planRepo.listMyDescription(planId);
 	}
 
+	@Override
+	public int writePlanInfo(PlanInfo planInfo) throws SQLException {
+		return planRepo.writePlanInfo(planInfo);
+	}
 
+	@Override
+	public List<PlanInfo> getPlanInfo(String memberId) throws SQLException {
+		return planRepo.getPlanInfo(memberId);
+	}
 
-//	@Override
-//	@Transactional
-//	public void deletePlan(int planId) throws Exception {
-//		planRepo.deletePlan(planId);
-//	}
-//
-//	@Override
-//	@Transactional
-//	public void modifyPlan(Map<String, String> map) throws Exception {
-//		planRepo.modifyPlan(map);
-//	}
-//
-//	@Override
-//	@Transactional
-//	public List<Plan> listPlan() throws Exception {
-//		return planRepo.listPlan();
-//	}
-//
-//	@Override
-//	@Transactional
-//	public List<Plan> listMyPlan(String userId) throws Exception {
-//		return planRepo.listMyPlan(userId);
-//	}
-	
-//	@Override
-//	public List<Plan> searchByCondition(SearchCondition con) {
-//		return planRepo.searchByCondition(con);
-//	}
+	@Override
+	public int deleteAll(int planId) throws SQLException {
+		planRepo.deleteDescription(planId);
+		planRepo.deletePlanInfo(planId);
+		return planRepo.deletePlan(planId);
+	}
 }
