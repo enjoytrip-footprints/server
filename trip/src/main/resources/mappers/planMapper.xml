@@ -8,6 +8,13 @@
             (memberId, planTitle, planDetail)
         values (#{memberId}, #{planTitle}, #{planDetail})
     </insert>
+    
+    
+    <insert id="writePlanInfo">
+        insert into planinfo
+            (memberId, planId, priceSum, happyAvg)
+        values (#{memberId}, #{planId}, #{priceSum}, #{happyAvg})
+    </insert>
 
     <insert id="writeDescription" parameterType="description">
         insert into description
@@ -35,9 +42,33 @@
         where id = #{planId}
     </select>
     
+    <select id="getPlanInfo" resultType="planInfo">
+        select *
+        from planinfo
+        where memberId = #{memberId}
+    </select>
+    
     <select id="listMyDescription" resultType="description">
         select *
         from description
         where planId = #{planId}
     </select>
+    
+    <delete id="deleteDescription">
+    	delete 
+        from description
+        where planId = #{planId}
+    </delete>
+    
+    <delete id="deletePlanInfo">
+    	delete 
+        from planinfo
+        where planId = #{planId}
+    </delete>
+    
+    <delete id="deletePlan">
+    	delete 
+        from plan
+        where id = #{planId}
+    </delete>
 </mapper>

@@ -3,6 +3,7 @@ package com.ssafy.trip.plan.controller;
 import com.ssafy.trip.member.dto.Member;
 import com.ssafy.trip.plan.dto.Description;
 import com.ssafy.trip.plan.dto.Plan;
+import com.ssafy.trip.plan.dto.PlanInfo;
 import com.ssafy.trip.plan.model.service.PlanService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -77,6 +78,18 @@ public class PlanController {
 		}
 	}
 	
+	@ApiOperation(value = "계획 평균 행복도, 총 예상 경비 작성",  response = String.class)
+	@PostMapping("/planInfo")
+	public ResponseEntity<?> writePlanInfo(@RequestBody PlanInfo planInfo){
+		try{
+			planService.writePlanInfo(planInfo); 
+			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		}
+		catch(Exception e){
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
+	
 	@ApiOperation(value = "해당 유저 마지막 작성 계획 조회", response = String.class)
 	@GetMapping("/getLast/{memberId}")
 	public ResponseEntity<?> getLast(@PathVariable("memberId") String memberId) {
@@ -123,6 +136,21 @@ public class PlanController {
 		}
 	}
 	
+	@ApiOperation(value = "특정인의 특정 계획 정보 조회", response = String.class)
+	@GetMapping("/planInfo/{memberId}")
+	public ResponseEntity<?> getPlanInfo(@PathVariable("memberId") String memberId) {
+		try {
+			List<PlanInfo> planinfo = planService.getPlanInfo(memberId);
+			if (planinfo != null && !planinfo.isEmpty()) {
+				return new ResponseEntity<List<PlanInfo>>(planinfo, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
+	
 	@ApiOperation(value = "특정인 세부계획 리스트",  response = String.class)
 	@GetMapping("/getDesList/{planId}")
 	public ResponseEntity<?> getMyDesList(@PathVariable("planId") int planId) {
@@ -130,6 +158,21 @@ public class PlanController {
 			List<Description> dess = planService.listMyDescription(planId);
 			if (dess != null && !dess.isEmpty()) {
 				return new ResponseEntity<List<Description>>(dess, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@ApiOperation(value = "계획을 삭제합니다(세부계획, 계획정보, 계획)",  response = String.class)
+	@GetMapping("/delPlan/{planId}")
+	public ResponseEntity<?> deletePlanAll(@PathVariable("planId") int planId) {
+		try {
+			int del = planService.deleteAll(planId);
+			if (del == 1) {
+				return new ResponseEntity<Void>(HttpStatus.OK);
 			} else {
 				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 			}
