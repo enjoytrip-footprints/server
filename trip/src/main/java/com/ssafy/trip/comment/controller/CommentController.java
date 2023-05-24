@@ -28,7 +28,7 @@ public class CommentController {
 	private CommentService commentService;
 
 	@ApiOperation(value = "리뷰에 해당하는 댓글 목록을 반환한다.", response = List.class)
-	@GetMapping("{reviewId}")
+	@GetMapping("/{reviewId}")
 	public ResponseEntity<List<Comment>> listComment(@PathVariable("reviewId") int reviewId) throws Exception {
 		logger.debug("listComment - 호출");
 		return new ResponseEntity<>(commentService.list(reviewId), HttpStatus.OK);
@@ -58,7 +58,7 @@ public class CommentController {
 	}
 
 	@ApiOperation(value = "commentId 해당하는 댓글 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-	@DeleteMapping("{commentId}")
+	@DeleteMapping("/{commentId}")
 	public ResponseEntity<String> deleteBook(@PathVariable("commentId") int commentId) throws Exception {
 		logger.debug("deleteBook - 호출");
 		if(commentService.delete(commentId)) {
