@@ -167,7 +167,7 @@ public class PlanController {
 	}
 	
 	@ApiOperation(value = "계획을 삭제합니다(세부계획, 계획정보, 계획)",  response = String.class)
-	@GetMapping("/delPlan/{planId}")
+	@DeleteMapping("/delPlan/{planId}")
 	public ResponseEntity<?> deletePlanAll(@PathVariable("planId") int planId) {
 		try {
 			int del = planService.deleteAll(planId);
