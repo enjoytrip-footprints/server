@@ -16,13 +16,13 @@
 ## 🖥️ 화면
 |회원가입|로그인|
 |:---:|:---:|
-|||
-|||
-|||
-|||
-|||
-|||
-|||
+|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/003fbe12-baf3-4fca-a88f-e54c73195bbf)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/f4bf6148-d224-4807-811e-cd25eb15d812)|
+|메인화면|메인화면 - 날씨|
+|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/19be4fae-f2e1-4567-89aa-8f88f5540276)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/a48de66c-c03a-4f28-836a-dccdeb2b6c01)|
+|여행지 검색|여행지 검색 확인|
+|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/3e7528ae-7bd9-4f09-8667-999fefca38ae)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/3831e82e-ef24-4739-9409-cd6e60972525)|
+|여행 계획 등록|등록된 여행지 확인|
+|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/4ca84b92-ea02-4f97-97de-2f53088e0563)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/f358e512-0dcb-46b5-b580-3dddd7f22799)|
 |||
 |||
 |여행 후기 목록|여행 후기 목록|
