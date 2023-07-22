@@ -13,39 +13,10 @@
 📍 API : 한국관광공사 API / Kakao map API / OpenWeatherMap  <br>
 📍 Algorithm : Knapsack <br>
 
-## 💽 영상
+## 💽 데모 영상
 
 
 https://github.com/enjoytrip-footprints/server/assets/71878202/4de7f0a7-30bb-47ee-8915-e9d473cef13e
 
 
-## 🖥️ 화면
-|회원가입|로그인|
-|:---:|:---:|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/003fbe12-baf3-4fca-a88f-e54c73195bbf)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/f4bf6148-d224-4807-811e-cd25eb15d812)|
-|메인화면|메인화면 - 날씨|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/19be4fae-f2e1-4567-89aa-8f88f5540276)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/a48de66c-c03a-4f28-836a-dccdeb2b6c01)|
-|여행지 검색|여행지 검색 확인|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/3e7528ae-7bd9-4f09-8667-999fefca38ae)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/3831e82e-ef24-4739-9409-cd6e60972525)|
-|여행 계획 등록|등록된 여행지 확인|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/4ca84b92-ea02-4f97-97de-2f53088e0563)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/f358e512-0dcb-46b5-b580-3dddd7f22799)|
-|여행 계획 작성|여행지 별로 상세 계획 작성(계획 및 행복도와 경비 추가)|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/1cba1705-0fec-4bb1-8aa5-d7890d629824)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/39adcc0f-50b8-49d7-ae3d-b2e61693b0f5)|
-|내 여행 계획 목록|여행 계획 상세보기|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/e9a26592-7789-46bf-a7a0-3704fa6b7f31)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/49510404-c427-431e-99e4-0786a4494140)|
-|가진 경비 입력|경비 부족시 최대 행복도를 얻는 여행지 확인|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/7496d0c7-1227-460f-98b8-e1935a5c5b95)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/f42504b0-63c9-4d44-a06f-a65996c3aaf7)|
-|여행 후기 목록|여행 후기 목록|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/3c5a386b-cd64-458f-a2a2-32a60769799c)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/b99552c3-a2f2-4b09-bfe4-7eabea2577e0)|
-|여행 후기 상세보기|여행 후기 댓글 작성|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/fe4e44e8-ad4b-4000-a900-110b2c99c0f2)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/5e87c71b-9e8b-4b6a-8593-ffe1770d2cf5)|
-|여행 후기 작성|여행 후기 사진 첨부|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/b16afd27-b5a6-4e72-9a21-1a467dd6ad92)|<img width="695" alt="image" src="https://github.com/enjoytrip-footprints/server/assets/71878202/f4b85b9c-bdd5-4e20-a639-208db22f6e06">|
-|개인 후기 목록|인기 후기 목록|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/b8338c94-6482-4b15-8ace-ffc0d3e88a45)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/ec716b67-8a9e-49ea-953a-2cf77168c156)|
-|건의사항 목록|건의사항 남기기|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/3d5ff10c-ebc1-42f3-bcd3-e311789d7e2b)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/8be03972-751e-4e87-8e00-c4deff7cef85)|
-
-## 💾 DB Schema
-![image](https://github.com/enjoytrip-footprints/server/assets/71878202/10f36a98-83b7-4e68-a5c3-6174ee9a4b6a)
 
