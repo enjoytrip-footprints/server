@@ -23,8 +23,12 @@
 |![image](https://github.com/enjoytrip-footprints/server/assets/71878202/3e7528ae-7bd9-4f09-8667-999fefca38ae)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/3831e82e-ef24-4739-9409-cd6e60972525)|
 |여행 계획 등록|등록된 여행지 확인|
 |![image](https://github.com/enjoytrip-footprints/server/assets/71878202/4ca84b92-ea02-4f97-97de-2f53088e0563)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/f358e512-0dcb-46b5-b580-3dddd7f22799)|
-|||
-|||
+|여행 계획 작성|여행지 별로 상세 계획 작성(계획 및 행복도와 경비 추가)|
+|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/1cba1705-0fec-4bb1-8aa5-d7890d629824)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/39adcc0f-50b8-49d7-ae3d-b2e61693b0f5)|
+|내 여행 계획 목록|여행 계획 상세보기|
+|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/e9a26592-7789-46bf-a7a0-3704fa6b7f31)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/49510404-c427-431e-99e4-0786a4494140)|
+|가진 경비 입력|경비 부족시 최대 행복도를 얻는 여행지 확인|
+|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/7496d0c7-1227-460f-98b8-e1935a5c5b95)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/f42504b0-63c9-4d44-a06f-a65996c3aaf7)|
 |여행 후기 목록|여행 후기 목록|
 |![image](https://github.com/enjoytrip-footprints/server/assets/71878202/3c5a386b-cd64-458f-a2a2-32a60769799c)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/b99552c3-a2f2-4b09-bfe4-7eabea2577e0)|
 |여행 후기 상세보기|여행 후기 댓글 작성|
