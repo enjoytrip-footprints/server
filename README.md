@@ -34,7 +34,7 @@
 |여행 후기 상세보기|여행 후기 댓글 작성|
 |![image](https://github.com/enjoytrip-footprints/server/assets/71878202/fe4e44e8-ad4b-4000-a900-110b2c99c0f2)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/5e87c71b-9e8b-4b6a-8593-ffe1770d2cf5)|
 |여행 후기 작성|여행 후기 사진 첨부|
-|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/b16afd27-b5a6-4e72-9a21-1a467dd6ad92)||
+|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/b16afd27-b5a6-4e72-9a21-1a467dd6ad92)|<img width="695" alt="image" src="https://github.com/enjoytrip-footprints/server/assets/71878202/f4b85b9c-bdd5-4e20-a639-208db22f6e06">|
 |개인 후기 목록|인기 후기 목록|
 |![image](https://github.com/enjoytrip-footprints/server/assets/71878202/b8338c94-6482-4b15-8ace-ffc0d3e88a45)|![image](https://github.com/enjoytrip-footprints/server/assets/71878202/ec716b67-8a9e-49ea-953a-2cf77168c156)|
 |건의사항 목록|건의사항 남기기|
