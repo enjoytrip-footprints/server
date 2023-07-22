@@ -15,7 +15,9 @@
 
 ## 💽 영상
 
-https://github.com/enjoytrip-footprints/server/assets/71878202/f211fd3e-e126-4342-b1fe-c1a4de0229c8
+
+https://github.com/enjoytrip-footprints/server/assets/71878202/4de7f0a7-30bb-47ee-8915-e9d473cef13e
+
 
 ## 🖥️ 화면
 |회원가입|로그인|
